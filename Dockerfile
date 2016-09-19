@@ -7,6 +7,9 @@ MAINTAINER John Pellman <john.pellman@childmind.org>
     #https://raw.githubusercontent.com/FCP-INDI/C-PAC/0.4.0_development/scripts/cpac_install.sh \
     #&& bash cpac_install.sh
 
+RUN sudo apt-get update && sudo apt-get upgrade -y && apt-get -y install python-dev python-pip 
+RUN pip install pandas patsy
+
 ENV FSLDIR /usr/share/fsl/5.0
 ENV FSLOUTPUTTYPE NIFTI_GZ
 ENV FSLMULTIFILEQUIT TRUE
