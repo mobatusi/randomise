@@ -49,6 +49,8 @@ parser.add_argument('analysis_level', help='Level of the analysis that will be p
                     choices=['participant', 'group'])
 parser.add_argument('model_file', help='JSON file describing the model and contrasts'
                     'that should be.')
+parser.add_argument('--num_iterations', help='Number of iterations used by randomise.',
+                    default=10000, type=int)
 parser.add_argument('--participant_label', help='The label(s) of the participant(s) that should be analyzed. The label '
                    'corresponds to sub-<participant_label> from the BIDS spec '
                    '(so it does not include "sub-"). If this parameter is not '
@@ -82,12 +84,16 @@ if not os.path.isdir(working_dir):
     print("Could not find bids directory %s"%(bids_dir))
     sys.exit(1)
 
+if args.num_iterations:
+    num_iterations=int(args.num_iterations)
+
 print ("\n")
 print ("## Running randomize pipeline with parameters:")
 print ("Output directory: %s"%(bids_dir))
 print ("Output directory: %s"%(output_dir))
 print ("Working directory: %s"%(working_dir))
 print ("Pheno file: %s"%(args.model_file))
+print ("Number of iterations: %d"%(num_iterations))
 print ("\n")
 
 # read in the pheno file
@@ -155,11 +161,18 @@ with open(model_file) as model_fd:
     model_dict = json.load(model_fd)
 
 incols=model_dict["model"].replace("-1","").replace("-","+").split("+")
+t_incols=[]
+for col in incols:
+    if '*' in col:
+        t_incols+=col.split("*")
+    else:
+        t_incols.append(col)
+incols=list(set(t_incols))
 
 # reduce the file to just the columns that we are interested in
 pheno_df=pheno_df[incols]
 
-#de mean all numberic columns
+#de-mean all numeric columns
 for df_ndx in pheno_df.columns:
     if np.issubdtype(pheno_df[df_ndx].dtype,np.number):
         pheno_df[df_ndx]-=pheno_df[df_ndx].mean()
@@ -173,7 +186,7 @@ contrast_dict={}
 num_contrasts=0
 for k in model_dict["contrasts"]:
     num_contrasts+=1
-    contrast_dict[k]=design.design_info.linear_constraint(k.encode('ascii')).coefs[0]
+    contrast_dict[k]=[n if n != -0 else 0 for n in design.design_info.linear_constraint(k.encode('ascii')).coefs[0]]
 
 num_subjects=len(file_list)
 mat_file, grp_file, con_file, fts_file = create_flame_model_files(design, \
@@ -185,8 +198,8 @@ rando_out_prefix=os.path.join(working_dir,"rando_pipe")
 print "writing results to %s"%(rando_out_prefix)
 
 ## now we should be ready to run randomize
-rando_string="randomise -i %s -o %s -d %s -t %s -m %s -n 10 -D -T"%(merge_output, 
-    rando_out_prefix, mat_file, con_file, merge_mask_output)
+rando_string="randomise -i %s -o %s -d %s -t %s -m %s -n %d -D -T"%(merge_output, 
+    rando_out_prefix, mat_file, con_file, merge_mask_output, num_iterations)
 
 try:
     run(rando_string)
