@@ -96,8 +96,26 @@ print ("Pheno file: %s"%(args.model_file))
 print ("Number of iterations: %d"%(num_iterations))
 print ("\n")
 
+# load in the model 
+with open(model_file) as model_fd:    
+    model_dict = json.load(model_fd)
+
+# parse the model string to determine which columns of the pheno
+# file we are interested in
+incols=model_dict["model"].replace("-1","").replace("-","+").split("+")
+t_incols=[]
+for col in incols:
+    if '*' in col:
+        t_incols+=col.split("*")
+    else:
+        t_incols.append(col)
+incols=list(set(t_incols))
+
 # read in the pheno file
 pheno_df=pd.read_csv(os.path.join(bids_dir, 'participants.tsv'),sep='\t')
+
+# reduce the file to just the columns that we are interested in
+pheno_df=pheno_df[['participant_id']+incols]
 
 # remove rows that have empty elements
 pheno_df=pheno_df.dropna()
@@ -123,12 +141,12 @@ for root, dirs, files in os.walk(bids_dir):
 merge_input = " ".join(file_list)
 merge_output = os.path.join(working_dir,"rando_pipe") + "_merge.nii.gz"
 
-print "merging",merge_output
+print "merging {0} files into {1}".format(len(file_list),merge_output)
 
 if not os.path.isfile(merge_output):
     # next we create a 4D file for the analysis using fsl merge
     merge_string = "fslmerge -t %s %s" % (merge_output, merge_input)
-    
+
     # MERGE the outputs
     try:
         run(merge_string)
@@ -153,24 +171,14 @@ if not os.path.isfile(merge_mask_output):
         raise
 
 #### now create the design.mat file
+
+# remove participant_id column
+pheno_df=pheno_df[incols]
+
 # reduce to the rows that we are using, and reorder to match the file list
 pheno_df=pheno_df.iloc[pheno_key_list,:]
 
-# load in the model 
-with open(model_file) as model_fd:    
-    model_dict = json.load(model_fd)
-
-incols=model_dict["model"].replace("-1","").replace("-","+").split("+")
-t_incols=[]
-for col in incols:
-    if '*' in col:
-        t_incols+=col.split("*")
-    else:
-        t_incols.append(col)
-incols=list(set(t_incols))
-
-# reduce the file to just the columns that we are interested in
-pheno_df=pheno_df[incols]
+print "{0} rows in design matrix".format(len(pheno_df.index))
 
 #de-mean all numeric columns
 for df_ndx in pheno_df.columns:
@@ -207,12 +215,11 @@ except:
     print "[!] FSL randomise failed."
     raise
 
-# ## now do the clustering stuff
+## now do the clustering stuff
 # fslmaths grot_tfce_corrp_tstat1 -thr 0.95 -bin -mul grot_tstat1 grot_thresh_tstat1
 
 for i in range(1,num_contrasts+1):
-    thresh_string="fslmaths %s_tfce_corrp_tstat%d -thr 0.95 -bin -mul %s_tstat%d %s_thresh_tstat%d"%(
-        rando_out_prefix,i,rando_out_prefix,i,rando_out_prefix,i)
+    thresh_string="fslmaths {0}_tfce_corrp_tstat{1} -thr 0.95 -bin -mul {0}_tstat{1} {0}_thresh_tstat{1}".format(rando_out_prefix,i)
 
     try:
         print "Threshold tstat%d"%(i)
@@ -223,9 +230,9 @@ for i in range(1,num_contrasts+1):
 
 # clust_string=cluster --in=grot_thresh_tstat1 --thresh=0.0001 --oindex=grot_cluster_index --olmax=grot_lmax.txt --osize=grot_cluster_size
 for i in range(1,num_contrasts+1):
-    clust_string="cluster --in=%s_thresh_tstat%d --thresh=0.0001 --oindex=%s_cluster_index --olmax=%s_lmax.txt --osize=%s_cluster_size"%(
-        rando_out_prefix, i, rando_out_prefix, rando_out_prefix, rando_out_prefix)
-    
+    clust_out_prefix = rando_out_prefix + "_cont_{0}".format(i)
+    clust_string="cluster --in={0}_thresh_tstat{1} --thresh=0.0001 --oindex={2}_cluster_index --olmax={2}_lmax.txt --osize={2}_cluster_size".format(rando_out_prefix, i, clust_out_prefix)
+ 
     try:
         run(clust_string)
     except:
