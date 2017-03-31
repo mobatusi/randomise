@@ -2,7 +2,7 @@
 def create_dummy_string(length):
     ppstring = ""
     for i in range(0, length):
-        ppstring += '\t' + '%1.5e' %(1.0)
+        ppstring += '\t' + '%1.5e'%(1.0)
     ppstring += '\n' 
     return ppstring
 
@@ -22,7 +22,6 @@ def write_mat_file(design_matrix, output_dir, model_name, \
         dimx = design_matrix.shape[0]
     else:
         dimx, dimy = design_matrix.shape
-
 
     ppstring = '/PPheights'
 
@@ -59,7 +58,6 @@ def write_mat_file(design_matrix, output_dir, model_name, \
         np.savetxt(f, design_matrix, fmt='%1.5e', delimiter='\t')
 
     return out_file
-
 
 
 def create_grp_file(design_matrix, grp_file_vector, output_dir, model_name):
@@ -168,7 +166,6 @@ def create_fts_file(ftest_list, con_dict, model_name, current_output, \
         
             fts_n = np.array(ftst)
 
-
             # print labels for the columns - mainly for double-checking your
             # model
             col_string = '\n'
@@ -180,7 +177,6 @@ def create_fts_file(ftest_list, con_dict, model_name, current_output, \
 
             for i in range(fts_n.shape[0]):
                 print >>f, ' '.join(fts_n[i].astype('str'))
-
 
     except Exception as e:
 
