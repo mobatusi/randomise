@@ -1,0 +1,134 @@
+[
+    {
+        "group": 1,
+        "imports": [],
+        "name": "00_fsl_merge",
+        "size": 1
+    },
+    {
+        "group": 1,
+        "imports": [
+            "00_fsl_merge"
+        ],
+        "name": "01_fsl_maths",
+        "size": 1
+    },
+    {
+        "group": 1,
+        "imports": [
+            "01_fsl_maths",
+            "00_fsl_merge"
+        ],
+        "name": "02_fsl_randomise_2",
+        "size": 1
+    },
+    {
+        "group": 1,
+        "imports": [
+            "02_fsl_randomise_2"
+        ],
+        "name": "03_select_t_cor2",
+        "size": 1
+    },
+    {
+        "group": 1,
+        "imports": [
+            "01_fsl_maths",
+            "00_fsl_merge"
+        ],
+        "name": "04_fsl_randomise_3",
+        "size": 1
+    },
+    {
+        "group": 1,
+        "imports": [
+            "04_fsl_randomise_3"
+        ],
+        "name": "05_select_t_cor3",
+        "size": 1
+    },
+    {
+        "group": 1,
+        "imports": [
+            "01_fsl_maths",
+            "00_fsl_merge"
+        ],
+        "name": "06_fsl_randomise_4",
+        "size": 1
+    },
+    {
+        "group": 1,
+        "imports": [
+            "06_fsl_randomise_4"
+        ],
+        "name": "07_select_item_t_stat4",
+        "size": 1
+    },
+    {
+        "group": 1,
+        "imports": [
+            "06_fsl_randomise_4"
+        ],
+        "name": "08_select_t_cor4",
+        "size": 1
+    },
+    {
+        "group": 1,
+        "imports": [
+            "08_select_t_cor4"
+        ],
+        "name": "09_fsl_threshold_contrast_4",
+        "size": 1
+    },
+    {
+        "group": 1,
+        "imports": [
+            "09_fsl_threshold_contrast_4"
+        ],
+        "name": "10_fsl_threshold_bin_contrast_4",
+        "size": 1
+    },
+    {
+        "group": 1,
+        "imports": [
+            "10_fsl_threshold_bin_contrast_4",
+            "07_select_item_t_stat4"
+        ],
+        "name": "11_fsl_applymask_contrast_4",
+        "size": 1
+    },
+    {
+        "group": 1,
+        "imports": [
+            "11_fsl_applymask_contrast_4"
+        ],
+        "name": "12_cluster_contrast_4",
+        "size": 1
+    },
+    {
+        "group": 1,
+        "imports": [
+            "11_fsl_applymask_contrast_4",
+            "12_cluster_contrast_4"
+        ],
+        "name": "13_sinker_contrast_4",
+        "size": 1
+    },
+    {
+        "group": 1,
+        "imports": [
+            "01_fsl_maths",
+            "00_fsl_merge"
+        ],
+        "name": "14_fsl_randomise_1",
+        "size": 1
+    },
+    {
+        "group": 1,
+        "imports": [
+            "14_fsl_randomise_1"
+        ],
+        "name": "15_select_t_cor1",
+        "size": 1
+    }
+]

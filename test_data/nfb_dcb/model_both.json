@@ -1,0 +1,1 @@
+{"contrasts": ["-Group", "-Group-Group:Sex[T.MALE]", "+Group", "+Group+Group:Sex[T.MALE]"], "model": "Group+Sex+Group*Sex+Age+Handedness+Mean_Relative_RMS_Displacement-1"}

@@ -1,0 +1,232 @@
+{
+    "groups": [
+        {
+            "name": "Group_00001",
+            "procs": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15
+            ],
+            "total": 16
+        }
+    ],
+    "links": [
+        {
+            "source": 0,
+            "target": 1,
+            "value": 1
+        },
+        {
+            "source": 11,
+            "target": 13,
+            "value": 1
+        },
+        {
+            "source": 12,
+            "target": 13,
+            "value": 1
+        },
+        {
+            "source": 14,
+            "target": 15,
+            "value": 1
+        },
+        {
+            "source": 1,
+            "target": 14,
+            "value": 1
+        },
+        {
+            "source": 0,
+            "target": 14,
+            "value": 1
+        },
+        {
+            "source": 6,
+            "target": 7,
+            "value": 1
+        },
+        {
+            "source": 2,
+            "target": 3,
+            "value": 1
+        },
+        {
+            "source": 1,
+            "target": 4,
+            "value": 1
+        },
+        {
+            "source": 0,
+            "target": 4,
+            "value": 1
+        },
+        {
+            "source": 6,
+            "target": 8,
+            "value": 1
+        },
+        {
+            "source": 1,
+            "target": 2,
+            "value": 1
+        },
+        {
+            "source": 0,
+            "target": 2,
+            "value": 1
+        },
+        {
+            "source": 8,
+            "target": 9,
+            "value": 1
+        },
+        {
+            "source": 9,
+            "target": 10,
+            "value": 1
+        },
+        {
+            "source": 4,
+            "target": 5,
+            "value": 1
+        },
+        {
+            "source": 10,
+            "target": 11,
+            "value": 1
+        },
+        {
+            "source": 7,
+            "target": 11,
+            "value": 1
+        },
+        {
+            "source": 1,
+            "target": 6,
+            "value": 1
+        },
+        {
+            "source": 0,
+            "target": 6,
+            "value": 1
+        },
+        {
+            "source": 11,
+            "target": 12,
+            "value": 1
+        }
+    ],
+    "maxN": 16,
+    "nodes": [
+        {
+            "group": 1,
+            "name": "0_fsl_merge",
+            "report": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/fsl_merge/_report/report.rst",
+            "result": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/fsl_merge/result_fsl_merge.pklz"
+        },
+        {
+            "group": 1,
+            "name": "1_fsl_maths",
+            "report": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/fsl_maths/_report/report.rst",
+            "result": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/fsl_maths/result_fsl_maths.pklz"
+        },
+        {
+            "group": 1,
+            "name": "2_fsl_randomise_2",
+            "report": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/fsl_randomise_2/_report/report.rst",
+            "result": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/fsl_randomise_2/result_fsl_randomise_2.pklz"
+        },
+        {
+            "group": 1,
+            "name": "3_select_t_cor2",
+            "report": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/select_t_cor2/_report/report.rst",
+            "result": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/select_t_cor2/result_select_t_cor2.pklz"
+        },
+        {
+            "group": 1,
+            "name": "4_fsl_randomise_3",
+            "report": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/fsl_randomise_3/_report/report.rst",
+            "result": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/fsl_randomise_3/result_fsl_randomise_3.pklz"
+        },
+        {
+            "group": 1,
+            "name": "5_select_t_cor3",
+            "report": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/select_t_cor3/_report/report.rst",
+            "result": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/select_t_cor3/result_select_t_cor3.pklz"
+        },
+        {
+            "group": 1,
+            "name": "6_fsl_randomise_4",
+            "report": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/fsl_randomise_4/_report/report.rst",
+            "result": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/fsl_randomise_4/result_fsl_randomise_4.pklz"
+        },
+        {
+            "group": 1,
+            "name": "7_select_item_t_stat4",
+            "report": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/select_item_t_stat4/_report/report.rst",
+            "result": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/select_item_t_stat4/result_select_item_t_stat4.pklz"
+        },
+        {
+            "group": 1,
+            "name": "8_select_t_cor4",
+            "report": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/select_t_cor4/_report/report.rst",
+            "result": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/select_t_cor4/result_select_t_cor4.pklz"
+        },
+        {
+            "group": 1,
+            "name": "9_fsl_threshold_contrast_4",
+            "report": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/fsl_threshold_contrast_4/_report/report.rst",
+            "result": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/fsl_threshold_contrast_4/result_fsl_threshold_contrast_4.pklz"
+        },
+        {
+            "group": 1,
+            "name": "10_fsl_threshold_bin_contrast_4",
+            "report": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/fsl_threshold_bin_contrast_4/_report/report.rst",
+            "result": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/fsl_threshold_bin_contrast_4/result_fsl_threshold_bin_contrast_4.pklz"
+        },
+        {
+            "group": 1,
+            "name": "11_fsl_applymask_contrast_4",
+            "report": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/fsl_applymask_contrast_4/_report/report.rst",
+            "result": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/fsl_applymask_contrast_4/result_fsl_applymask_contrast_4.pklz"
+        },
+        {
+            "group": 1,
+            "name": "12_cluster_contrast_4",
+            "report": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/cluster_contrast_4/_report/report.rst",
+            "result": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/cluster_contrast_4/result_cluster_contrast_4.pklz"
+        },
+        {
+            "group": 1,
+            "name": "13_sinker_contrast_4",
+            "report": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/sinker_contrast_4/_report/report.rst",
+            "result": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/sinker_contrast_4/result_sinker_contrast_4.pklz"
+        },
+        {
+            "group": 1,
+            "name": "14_fsl_randomise_1",
+            "report": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/fsl_randomise_1/_report/report.rst",
+            "result": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/fsl_randomise_1/result_fsl_randomise_1.pklz"
+        },
+        {
+            "group": 1,
+            "name": "15_select_t_cor1",
+            "report": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/select_t_cor1/_report/report.rst",
+            "result": "/home/dolu/Projects/VBC/randomise/test_data/wf_randomize/select_t_cor1/result_select_t_cor1.pklz"
+        }
+    ]
+}
